@@ -3,6 +3,19 @@ interface Pokemon {
   'url': string;
 }
 
+interface PokemonData {
+  pokemonByPage: number;
+  page: number;
+  'name': string;
+  type: string;
+}
+
+interface PokemonType {
+  pokemon: Pokemon;
+}
+
+const OFFSET = 12;
+
 const fetchPokemonList = async (limit: number, page: number) => {
   const offset = limit * (page - 1);
   const response = await fetch(
@@ -22,29 +35,46 @@ const fetchPokemonData = async (pokemonArray: Pokemon[]) => {
       return data;
     }),
   );
-
-  return pokemonData;
-};
-
-const fetchPokemon = async (limit: number, page: number) => {
-  const pokemonList = await fetchPokemonList(limit, page);
-  const pokemonData = await fetchPokemonData(pokemonList);
-
   return pokemonData;
 };
 
 const fetchPokemonByName = async (name: string) => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   const data = await response.json();
+  const array = [data];
 
-  return data;
+  return array;
 };
 
-const fetchPokemonByType = async (type: string) => {
+const fetchPokemonByType = async (type: string, pokemonByPage: number, page: number) => {
   const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
   const data = await response.json();
 
-  return data;
+  const limit = pokemonByPage * page;
+  const offset = limit - OFFSET;
+  const pokemonList = data.pokemon.slice(offset, limit);
+  const onlyPokemon = pokemonList.map((pokemon: PokemonType) => pokemon.pokemon);
+
+  return onlyPokemon;
+};
+
+const fetchPokemon = async ({ pokemonByPage, page, name, type }: PokemonData) => {
+  if (name.length > 0) {
+    const pokemonData = await fetchPokemonByName(name);
+    return pokemonData;
+  }
+
+  if (type.length > 0) {
+    const pokemonList = await fetchPokemonByType(type, pokemonByPage, page);
+    const pokemonData = await fetchPokemonData(pokemonList);
+
+    return pokemonData;
+  }
+
+  const pokemonList = await fetchPokemonList(pokemonByPage, page);
+  const pokemonData = await fetchPokemonData(pokemonList);
+
+  return pokemonData;
 };
 
 export { fetchPokemon, fetchPokemonByName, fetchPokemonByType };
