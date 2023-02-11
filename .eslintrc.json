@@ -8,6 +8,14 @@
       "trybe-frontend"
   ],
   "overrides": [
+    {
+        "files": ["*.tsx"],
+        "rules": {
+            "no-unused-vars": "off",
+            "import/no-unresolved": "off",
+            "import/extensions": "off"
+        }
+    }
   ],
   "parserOptions": {
       "ecmaVersion": "latest",
