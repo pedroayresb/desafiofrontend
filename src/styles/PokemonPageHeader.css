@@ -1,4 +1,5 @@
 #pokemon-page-header {
   background-image: url(../imgs/image\(1\).jpg);
   background-size: cover;
+  background-blend-mode: screen;
 }

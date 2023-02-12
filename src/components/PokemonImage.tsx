@@ -29,7 +29,7 @@ function PokemonImage({ shiny, array }: Props) {
       <img
         src={ shiny ? SHINY(array) : NON_SHINY(array) }
         alt={ array[0].name }
-        className="w-64"
+        className="w-64 bg-[#cccbc0]"
       />
     </div>
   );

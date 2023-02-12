@@ -19,7 +19,7 @@ function PokemonPageHeader({ id, name, type, shiny, setShiny }: Props) {
   return (
     <div
       id="pokemon-page-header"
-      className="grid grid-flow-col gap-2 items-center p-2 text-[#fafadf] text-lg"
+      className="grid grid-flow-col gap-2 items-center p-2 text-[#fafadf] text-lg w-full"
     >
       <p
         className="ml-6 text-center"
@@ -36,7 +36,7 @@ function PokemonPageHeader({ id, name, type, shiny, setShiny }: Props) {
         </h1>
       </div>
       <div
-        className="flex flex-row items-center justify-center"
+        className="flex flex-col items-center justify-center md:flex-row"
       >
         { type.map((types, index) => (
           <PokemonTypes
