@@ -31,9 +31,13 @@ function HomePage() {
       className="flex flex-col items-center"
     >
       <SearchByNameForm
+        pokeName={ name }
         setName={ setName }
+        setType={ setType }
+        setPage={ setPage }
       />
       <SearchByType
+        setName={ setName }
         setType={ setType }
         setPage={ setPage }
       />
@@ -44,6 +48,7 @@ function HomePage() {
       <PokemonPagination
         page={ page }
         setPage={ setPage }
+        data={ data as Awaited<ReturnType<typeof fetchPokemon>> }
       />
     </div>
   );

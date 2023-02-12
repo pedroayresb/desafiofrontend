@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Props {
+  pokeName: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setType: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SearchByNameForm({ setName }: Props) {
-  const [innerName, setInnerName] = useState('');
+function SearchByNameForm({ pokeName, setName, setPage, setType }: Props) {
+  const [innerName, setInnerName] = useState(pokeName);
+
+  useEffect(() => {
+    setInnerName(pokeName);
+  }, [pokeName]);
 
   return (
     <div
@@ -14,6 +21,7 @@ function SearchByNameForm({ setName }: Props) {
       <input
         type="text"
         placeholder="Search by name"
+        value={ innerName }
         onChange={ (event) => {
           setInnerName(event.target.value);
           if (event.target.value === '') {
@@ -23,7 +31,11 @@ function SearchByNameForm({ setName }: Props) {
       />
       <button
         type="button"
-        onClick={ () => setName(innerName.toLowerCase()) }
+        onClick={ () => {
+          setName(innerName.toLowerCase());
+          setType('');
+          setPage(1);
+        } }
       >
         Search
       </button>

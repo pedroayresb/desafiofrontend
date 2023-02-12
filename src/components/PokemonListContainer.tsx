@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { fetchPokemon } from '../utils/fetchPokemon';
 import PokemonTypes from './PokemonTypes';
 
@@ -16,6 +17,12 @@ interface PokemonTypesProps {
 function PokemonListContainer(props: props) {
   const { data } = props;
 
+  const navigate = useNavigate();
+
+  const handleClick = (name: string) => {
+    navigate(`/pokemon/${name}`);
+  };
+
   return (
     <div
       className={ `grid grid-cols-3 gap-4 justify-center content-center p-2 w-[85%]
@@ -23,8 +30,10 @@ function PokemonListContainer(props: props) {
     >
       { !data && <p>Loading...</p>}
       { data?.map((pokemon: any) => (
-        <div
+        <button
+          type="button"
           key={ pokemon.name }
+          onClick={ () => handleClick(pokemon.name) }
           className={ `border border-black rounded-xl capitalize flex flex-col 
           items-center p-2 bg-white shadow-lg hover:shadow-xl 
           transition duration-300 ease-in-out transform hover:scale-105` }
@@ -50,7 +59,7 @@ function PokemonListContainer(props: props) {
             {' '}
             { pokemon.name }
           </h1>
-        </div>
+        </button>
       )) }
     </div>
   );

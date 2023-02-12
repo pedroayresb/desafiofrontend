@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import HomePage from './pages/HomePage';
 import PokemonPage from './pages/PokemonPage';
-import PartyPage from './pages/PartyPage';
 
 const queryClient = new QueryClient();
 
@@ -21,12 +20,6 @@ function App() {
             path="/pokemon/:pokemonName"
             element={
               <PokemonPage />
-            }
-          />
-          <Route
-            path="/party"
-            element={
-              <PartyPage />
             }
           />
         </Routes>

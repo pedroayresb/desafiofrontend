@@ -1,4 +1,5 @@
 interface Props {
+  setName: React.Dispatch<React.SetStateAction<string>>;
   setType: React.Dispatch<React.SetStateAction<string>>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -24,9 +25,10 @@ const pokemonTypes = [
   'fairy',
 ];
 
-function SearchByType({ setType, setPage }: Props) {
+function SearchByType({ setType, setPage, setName }: Props) {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setType(event.target.value);
+    setName('');
     setPage(1);
   };
 
@@ -42,7 +44,7 @@ function SearchByType({ setType, setPage }: Props) {
             key={ type }
             className="capitalize"
           >
-            { type }
+            { type.charAt(0).toUpperCase() + type.slice(1) }
           </option>
         )) }
       </select>
