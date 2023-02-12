@@ -16,7 +16,7 @@ function SearchByNameForm({ pokeName, setName, setPage, setType }: Props) {
 
   return (
     <div
-      className="flex justify-center"
+      className="flex justify-center p-2"
     >
       <input
         type="text"
@@ -31,6 +31,7 @@ function SearchByNameForm({ pokeName, setName, setPage, setType }: Props) {
       />
       <button
         type="button"
+        className="bg-[#27394d] text-white rounded"
         onClick={ () => {
           setName(innerName.toLowerCase());
           setType('');

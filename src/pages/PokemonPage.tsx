@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchPokemonByName } from '../utils/fetchPokemon';
 import PokemonPageHeader from '../components/PokemonPageHeader';
 import PokemonImage from '../components/PokemonImage';
@@ -8,10 +8,12 @@ import AbilitiesContainer from '../components/AbilitiesContainer';
 import MiscelaneousInfo from '../components/MiscelaneousInfo';
 import StatsContainer from '../components/StatsContainer';
 import SpritesContainer from '../components/SpritesContainert';
+import PokemonsCarrousel from '../components/PokemonsCarrousel';
 
 function PokemonPage() {
   const { pokemonName } = useParams<string>();
   const [shiny, setShiny] = useState(false);
+  const navigate = useNavigate();
 
   const { data, isLoading, error }: {
     data: Awaited<ReturnType<typeof fetchPokemonByName>> | undefined;
@@ -43,6 +45,15 @@ function PokemonPage() {
         shiny={ shiny }
         setShiny={ setShiny }
       />
+      <button
+        id="GoBackButton"
+        type="button"
+        onClick={ () => navigate('/') }
+        className={ `text-[#27394d] relative top-[-10px] 
+          right-[-110px] md:right-[-250px] lg:right-[-300px] xl:right-[-320px]` }
+      >
+        Go Back
+      </button>
       <div
         className={ `flex flex-col items-center justify-around lg:flex-row
         w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]` }
@@ -68,6 +79,9 @@ function PokemonPage() {
       />
       <SpritesContainer
         sprites={ data![0].sprites }
+      />
+      <PokemonsCarrousel
+        id={ data![0].id }
       />
     </div>
   );

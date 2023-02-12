@@ -33,7 +33,7 @@ function SearchByType({ setType, setPage, setName }: Props) {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center p-2">
       <select
         onChange={ (event) => handleChange(event) }
       >

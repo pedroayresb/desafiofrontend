@@ -17,6 +17,7 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
   const [nonHiddenAbilities,
     setNonHiddenAbilities] = useState([] as AbilitiesContainerProps['abilities']);
   const { abilities } = props;
+  const [collumClassName, setCollumClassName] = useState('' as string);
 
   const separateAbilities = (abilitiesArray: AbilitiesContainerProps['abilities']) => {
     const hidden: AbilitiesContainerProps['abilities'] = [];
@@ -32,6 +33,7 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
 
     setHiddenAbilities(hidden);
     setNonHiddenAbilities(nonHidden);
+    setCollumClassName(`grid gap-2 grid-cols-${nonHidden.length} text-center`);
   };
 
   useEffect(() => {
@@ -60,7 +62,7 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
     >
       <h1 className="text-2xl">Abilities</h1>
       <div
-        className={ `grid grid-cols-${nonHiddenAbilities.length} gap-2` }
+        className={ collumClassName }
       >
         { nonHiddenAbilities
           .map((ability, index) => renderAbility(ability.ability.name, index, false)) }

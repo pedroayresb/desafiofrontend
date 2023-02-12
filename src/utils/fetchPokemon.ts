@@ -77,4 +77,12 @@ const fetchPokemon = async ({ pokemonByPage, page, name, type }: PokemonData) =>
   return pokemonData;
 };
 
-export { fetchPokemon, fetchPokemonByName, fetchPokemonByType };
+const fetchPokemonCarrousel = async (pokemonByPage: number, id: number) => {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${pokemonByPage}&offset=${id}`);
+  const data = await response.json();
+  const pokemonData = await fetchPokemonData(data.results);
+
+  return pokemonData;
+};
+
+export { fetchPokemon, fetchPokemonByName, fetchPokemonByType, fetchPokemonCarrousel };

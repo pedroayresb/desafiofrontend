@@ -30,17 +30,27 @@ function HomePage() {
     <div
       className="flex flex-col items-center"
     >
-      <SearchByNameForm
-        pokeName={ name }
-        setName={ setName }
-        setType={ setType }
-        setPage={ setPage }
-      />
-      <SearchByType
-        setName={ setName }
-        setType={ setType }
-        setPage={ setPage }
-      />
+      <h1
+        id="pokemon-page-header"
+        className="text-4xl p-2 text-[#f0ebce] w-screen text-center"
+      >
+        Pokedex
+      </h1>
+      <div
+        className="flex flex-row items-center p-2"
+      >
+        <SearchByNameForm
+          pokeName={ name }
+          setName={ setName }
+          setType={ setType }
+          setPage={ setPage }
+        />
+        <SearchByType
+          setName={ setName }
+          setType={ setType }
+          setPage={ setPage }
+        />
+      </div>
       { isLoading && <p>Loading...</p> }
       <PokemonListContainer
         data={ data as Awaited<ReturnType<typeof fetchPokemon>> }
