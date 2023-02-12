@@ -7,6 +7,7 @@ import PokemonImage from '../components/PokemonImage';
 import AbilitiesContainer from '../components/AbilitiesContainer';
 import MiscelaneousInfo from '../components/MiscelaneousInfo';
 import StatsContainer from '../components/StatsContainer';
+import SpritesContainer from '../components/SpritesContainert';
 
 function PokemonPage() {
   const { pokemonName } = useParams<string>();
@@ -33,7 +34,7 @@ function PokemonPage() {
     <div
       className={ `grid grid-cols-1 gap-2 w-[90%] md:w-[80%] 
         lg:w-[70%] xl:w-[60%] 2xl:w-[50%] place-items-center border-[#27394d]
-        border-t-[15px] border-r-[20px] border-b-[10px] rounded-lg shadow-md p-2` }
+        border-t-[15px] border-r-[20px] border-b-[10px] rounded-lg shadow-md p-2 m-2` }
     >
       <PokemonPageHeader
         id={ data![0].id }
@@ -64,6 +65,9 @@ function PokemonPage() {
       </div>
       <StatsContainer
         stats={ data![0].stats }
+      />
+      <SpritesContainer
+        sprites={ data![0].sprites }
       />
     </div>
   );

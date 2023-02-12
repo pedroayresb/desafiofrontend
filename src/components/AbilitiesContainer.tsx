@@ -41,7 +41,9 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
   const replaceWithSpace = (string: string) => string.replace(/-/g, ' ');
 
   const renderAbility = (abilityName: string, key: number, isHidden: boolean) => (
-    <>
+    <div
+      key={ key }
+    >
       <p
         className="capitalize"
         key={ key }
@@ -49,7 +51,7 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
         { replaceWithSpace(abilityName) }
       </p>
       { isHidden && <p className="text-sm text-center">Hidden</p> }
-    </>
+    </div>
   );
 
   return (
@@ -58,7 +60,7 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
     >
       <h1 className="text-2xl">Abilities</h1>
       <div
-        className="grid grid-cols-2 gap-2"
+        className={ `grid grid-cols-${nonHiddenAbilities.length} gap-2` }
       >
         { nonHiddenAbilities
           .map((ability, index) => renderAbility(ability.ability.name, index, false)) }
