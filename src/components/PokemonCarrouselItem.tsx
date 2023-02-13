@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import PokemonTypes from './PokemonTypes';
 
 interface PokemonTypesProps {
@@ -10,26 +10,22 @@ interface PokemonTypesProps {
 }
 
 function PokemonCarrouselItem(props: any) {
-  const { pokemon } = props;
+  const { pokemon, selected } = props;
   const { name, id, sprites } = pokemon;
-  const navigate = useNavigate();
   const { pokemonName } = useParams<string>();
 
-  const handleClick = (pokeName: string) => {
-    navigate(`/pokemon/${pokeName}`);
-  };
-
-  const classNameIfSelected = pokemonName === name
+  const classNameIfSelected = selected
     ? 'border border-yellow-500' : 'border border-black';
 
   return (
-    <button
+    <Link
+      to={ `/pokemon/${name}` }
       type="button"
       key={ name }
-      onClick={ () => handleClick(name) }
       className={ `${classNameIfSelected} rounded-xl capitalize flex flex-col
       items-center shadow-lg hover:shadow-xl
       transition duration-300 ease-in-out transform hover:scale-105` }
+      data-testid={ `pokemon-carrousel-item-${id}` }
     >
       <img
         className="grow"
@@ -40,7 +36,7 @@ function PokemonCarrouselItem(props: any) {
         #
         { id }
       </h1>
-    </button>
+    </Link>
   );
 }
 

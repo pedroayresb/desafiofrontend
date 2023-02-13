@@ -24,11 +24,6 @@ function PokemonsCarrousel(props: Props) {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-
-  if (error) {
-    return <p>Error</p>;
-  }
-
   return (
     <div
       className="grid grid-cols-5 gap-4 justify-center content-center p-2"
@@ -37,6 +32,7 @@ function PokemonsCarrousel(props: Props) {
         <PokemonCarrouselItem
           key={ pokemon.name }
           pokemon={ pokemon }
+          selected={ pokemon.id === id }
         />
       )) }
     </div>

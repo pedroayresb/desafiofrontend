@@ -36,12 +36,14 @@ function SearchByType({ setType, setPage, setName }: Props) {
     <div className="flex justify-center p-2">
       <select
         onChange={ (event) => handleChange(event) }
+        data-testid="filter-select"
       >
         <option value="">All</option>
         { pokemonTypes.map((type) => (
           <option
             value={ type }
             key={ type }
+            data-testid={ type }
             className="capitalize"
           >
             { type.charAt(0).toUpperCase() + type.slice(1) }

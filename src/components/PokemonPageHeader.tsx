@@ -52,6 +52,7 @@ function PokemonPageHeader({ id, name, type, shiny, setShiny }: Props) {
           type="checkbox"
           id="shiny"
           name="shiny"
+          data-testid="shiny-checkbox"
           checked={ shiny }
           onChange={ () => setShiny(!shiny) }
         />

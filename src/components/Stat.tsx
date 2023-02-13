@@ -58,8 +58,9 @@ function Stat({ stat }: Props) {
           className="relative h-4 rounded-full bg-gray-300 flex flex-row"
         >
           <div
+            data-testid={ `stat-line-${name}` }
             className={ `absolute h-full rounded-full 
-            bg-blue-500 ${lineSizeByStatSize(baseStat)} ${classNameByStat[name]}` }
+            ${lineSizeByStatSize(baseStat)} ${classNameByStat[name]}` }
           />
         </div>
         <p>

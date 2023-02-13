@@ -12,33 +12,13 @@ interface AbilitiesContainerProps {
 }
 
 function AbilitiesContainer(props: AbilitiesContainerProps) {
-  const [hiddenAbilities,
-    setHiddenAbilities] = useState([] as AbilitiesContainerProps['abilities']);
-  const [nonHiddenAbilities,
-    setNonHiddenAbilities] = useState([] as AbilitiesContainerProps['abilities']);
   const { abilities } = props;
-  const [collumClassName, setCollumClassName] = useState('' as string);
-
-  const separateAbilities = (abilitiesArray: AbilitiesContainerProps['abilities']) => {
-    const hidden: AbilitiesContainerProps['abilities'] = [];
-    const nonHidden: AbilitiesContainerProps['abilities'] = [];
-
-    abilitiesArray.forEach((ability) => {
-      if (ability.is_hidden) {
-        hidden.push(ability);
-      } else {
-        nonHidden.push(ability);
-      }
-    });
-
-    setHiddenAbilities(hidden);
-    setNonHiddenAbilities(nonHidden);
-    setCollumClassName(`grid gap-2 grid-cols-${nonHidden.length} text-center`);
-  };
-
-  useEffect(() => {
-    separateAbilities(abilities);
-  }, [abilities]);
+  const [hiddenAbilities,
+    setHiddenAbilities] = useState(abilities.filter((ability) => ability.is_hidden));
+  const [nonHiddenAbilities,
+    setNonHiddenAbilities] = useState(abilities.filter((ability) => !ability.is_hidden));
+  const [collumClassName, setCollumClassName] = useState(nonHiddenAbilities.length > 1
+    ? 'grid grid-cols-2 gap-2' : 'grid grid-cols-1 gap-2');
 
   const replaceWithSpace = (string: string) => string.replace(/-/g, ' ');
 
@@ -62,6 +42,7 @@ function AbilitiesContainer(props: AbilitiesContainerProps) {
     >
       <h1 className="text-2xl">Abilities</h1>
       <div
+        data-testid="abilities-container"
         className={ collumClassName }
       >
         { nonHiddenAbilities

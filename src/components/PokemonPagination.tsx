@@ -19,6 +19,7 @@ function PokemonPagination(props: Props) {
         <button
           type="button"
           className="mr-2"
+          data-testid="prev-btn"
           onClick={ () => setPage(page - 1) }
         >
           -
@@ -33,6 +34,7 @@ function PokemonPagination(props: Props) {
         <button
           type="button"
           className="ml-2"
+          data-testid="next-btn"
           onClick={ () => setPage(page + 1) }
         >
           +

@@ -21,6 +21,7 @@ function SearchByNameForm({ pokeName, setName, setPage, setType }: Props) {
       <input
         type="text"
         placeholder="Search by name"
+        data-testid="search-input"
         value={ innerName }
         onChange={ (event) => {
           setInnerName(event.target.value);
@@ -31,6 +32,7 @@ function SearchByNameForm({ pokeName, setName, setPage, setType }: Props) {
       />
       <button
         type="button"
+        data-testid="search-btn"
         className="bg-[#27394d] text-white rounded"
         onClick={ () => {
           setName(innerName.toLowerCase());

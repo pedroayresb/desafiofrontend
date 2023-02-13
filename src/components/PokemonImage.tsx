@@ -7,16 +7,12 @@ interface Props {
 
 function PokemonImage({ shiny, array }: Props) {
   const SHINY = (poke: Awaited<ReturnType<typeof fetchPokemonByName>>) => {
-    if (!poke) return '';
-
     const shinyArtwork = poke[0].sprites.other['official-artwork'].front_shiny;
     if (shinyArtwork) return shinyArtwork;
     return poke[0].sprites.front_shiny;
   };
 
   const NON_SHINY = (poke: Awaited<ReturnType<typeof fetchPokemonByName>>) => {
-    if (!poke) return '';
-
     const nonShiny = poke[0].sprites.other['official-artwork'].front_default;
     if (nonShiny) return nonShiny;
     return poke[0].sprites.front_default;

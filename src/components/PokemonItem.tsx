@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PokemonTypes from './PokemonTypes';
 
 interface PokemonTypesProps {
@@ -22,19 +22,14 @@ interface Props {
 
 function PokemonItem(prop: Props) {
   const { pokemon } = prop;
-  const navigate = useNavigate();
-
-  const handleClick = (name: string) => {
-    navigate(`/pokemon/${name}`);
-  };
 
   const { name, types, sprites, id } = pokemon;
 
   return (
-    <button
-      type="button"
+    <Link
+      to={ `/pokemon/${name}` }
       key={ name }
-      onClick={ () => handleClick(name) }
+      data-testid={ `${id}-pokemon-item` }
       className={ `border border-black rounded-xl capitalize flex flex-col 
       items-center p-2 bg-white shadow-lg hover:shadow-xl 
       transition duration-300 ease-in-out transform hover:scale-105` }
@@ -60,7 +55,7 @@ function PokemonItem(prop: Props) {
         {' '}
         { name }
       </h1>
-    </button>
+    </Link>
   );
 }
 
