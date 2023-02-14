@@ -19,12 +19,18 @@ Este projeto é uma aplicação Pokédex que utiliza as tecnologias React, React
 ```bash
 git clone git@github.com:pedroayresb/desafiofrontend.git
 ```
-2.  Instale as dependências
+
+2. Entre na pasta do projeto
+```bash
+cd desafiofrontend
+```
+
+3.  Instale as dependências
 ```bash
 npm install
 ```
 
-3.  Inicie a aplicação
+4.  Inicie a aplicação
 ```bash
 npm start
 ```
