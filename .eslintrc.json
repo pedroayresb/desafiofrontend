@@ -13,7 +13,8 @@
         "rules": {
             "no-unused-vars": "off",
             "import/no-unresolved": "off",
-            "import/extensions": "off"
+            "import/extensions": "off",
+            "react/jsx-filename-extension": "off"
         }
     }
   ],
